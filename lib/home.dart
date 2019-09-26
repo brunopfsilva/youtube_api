@@ -3,12 +3,15 @@ import 'package:youtube_api/telas/EmAlta.dart';
 import 'package:youtube_api/telas/Favorito.dart';
 import 'package:youtube_api/telas/Inicio.dart';
 import 'package:youtube_api/telas/Inscricao.dart';
+import 'examples/apirequest.dart';
+
 
 class MyApp extends StatelessWidget {
    
 
   @override
   Widget build(BuildContext context) {
+
 
 
     return MaterialApp(
@@ -46,10 +49,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   
+  Api _api = Api();
 
   @override
   Widget build(BuildContext context) {
      
+     _api.pesquisarApi("");
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.grey),
