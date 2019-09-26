@@ -1,9 +1,10 @@
 import 'package:http/http.dart' as http;
+import 'package:youtube_api/model/video.dart';
 import 'package:youtube_api/utils/common.dart';
 import 'dart:convert';
 
 
-class api {
+class Api {
 
   _recuperarCep() async {
 
@@ -23,14 +24,45 @@ class api {
 
 }
 
-pesquisarApi(String pesquisar) async{
+pesquisarApi(String pesquisa) async{
 
   http.Response response = await http.get(
     
     
     Common.urlbase +
-    "search?part=snippet&type=video&maxResults=20&order=date&key=${Common.youtubeapi}");
+    "search?part=snippet&type=video&maxResults=20&order=date&key=${Common.youtubeapi}&q=$pesquisa"
+    
+    
+    );
+
+
+  if(response.statusCode == 200){
+
+
+    Map<String,dynamic>dadosJson = json.decode(response.body);
+    print("resultado: "+dadosJson["items"][0].toString());
+    
+    /* utilizar o .map para percorrer e adicionar os objectos recuperados da api */
+
+    List<Video>videos = dadosJson["items"].map<Video>(
+      (map){
+        //convert map em objecto do tipo video
+        return Video.fromJson(map);
+      }
+      //convert processamento map em lista
+    ).toList();
+
+    /*for( var video in dadosJson["items"]){
+      print("Resultado: "+video.toString());
+    }*/
+
+  }else {
+
+  }
 
 }
+
+
+
 
 }
