@@ -49,21 +49,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   
-  Api _api = Api();
 
   @override
   Widget build(BuildContext context) {
      
-     _api.pesquisarApi("");
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.grey),
         backgroundColor: Colors.white,
         title: Image.asset("assets/images/youtube.png",width: 99,height: 21,),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search),onPressed: (){},),
-          IconButton(icon: Icon(Icons.videocam),onPressed: (){},),
-          IconButton(icon: Icon(Icons.account_circle),onPressed: (){},),
+          IconButton(icon: Icon(Icons.search),onPressed: ()async{
+            String res = await showSearch(context: context, delegate: null);
+          },),
+       /*   IconButton(icon: Icon(Icons.videocam),onPressed: (){},),
+          IconButton(icon: Icon(Icons.account_circle),onPressed: (){},), */
         ],
       ),
       body: _body(),
@@ -101,9 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-  Center _body() {
-    return Center(
-            
+   _body() {
+    return Container(
+      padding: EdgeInsets.all(16),      
       child: Column(
         
         mainAxisAlignment: MainAxisAlignment.center,

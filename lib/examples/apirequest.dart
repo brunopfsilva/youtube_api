@@ -24,7 +24,7 @@ class Api {
 
 }
 
-pesquisarApi(String pesquisa) async{
+Future<List<Video>>pesquisarApi(String pesquisa) async{
 
   http.Response response = await http.get(
     
@@ -44,7 +44,7 @@ pesquisarApi(String pesquisa) async{
     
     /* utilizar o .map para percorrer e adicionar os objectos recuperados da api */
 
-    List<Video>videos = dadosJson["items"].map<Video>(
+    List<Video> videos = dadosJson["items"].map<Video>(
       (map){
         //convert map em objecto do tipo video
         return Video.fromJson(map);
@@ -52,7 +52,15 @@ pesquisarApi(String pesquisa) async{
       //convert processamento map em lista
     ).toList();
 
-    /*for( var video in dadosJson["items"]){
+
+    /*
+    
+    
+    for(var video in videos){
+      print("resultado ${video.titulo}");
+    }
+    
+    for( var video in dadosJson["items"]){
       print("Resultado: "+video.toString());
     }*/
 
