@@ -7,7 +7,10 @@ class customSearchDelegate extends SearchDelegate<String>{
     return [
       IconButton(
         icon: Icon(Icons.clear),
-        onPressed: () {},
+        onPressed: () {
+          //o metodo query acessa o que é digitado
+          query = "";
+        },
 
       ),
       
@@ -19,19 +22,22 @@ class customSearchDelegate extends SearchDelegate<String>{
     // TODO: implement buildLeading
     return IconButton(
       icon: Icon(Icons.arrow_back),
-      onPressed: (){},);
+      onPressed: (){
+        //metodo close devolve um retorno a outra tela
+        close(context, null);
+      },);
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    return null;
+    //no query contem sempre o que é digitado
+    close(context, query);
+    return Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    return null;
+    return Container();
   }
 
 }

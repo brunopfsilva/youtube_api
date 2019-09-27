@@ -4,6 +4,7 @@ import 'package:youtube_api/telas/Favorito.dart';
 import 'package:youtube_api/telas/Inicio.dart';
 import 'package:youtube_api/telas/Inscricao.dart';
 import 'examples/apirequest.dart';
+import 'package:youtube_api/utils/customSearchDelegate.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -59,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.white,
         title: Image.asset("assets/images/youtube.png",width: 99,height: 21,),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search),onPressed: ()async{
-            String res = await showSearch(context: context, delegate: null);
+          IconButton(icon: Icon(Icons.search),onPressed: () async {
+            String res = await showSearch(context: context, delegate: customSearchDelegate());
           },),
        /*   IconButton(icon: Icon(Icons.videocam),onPressed: (){},),
           IconButton(icon: Icon(Icons.account_circle),onPressed: (){},), */

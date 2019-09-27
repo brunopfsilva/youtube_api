@@ -38,11 +38,30 @@ Future<List<Video>> videos;
             case ConnectionState.active:
             case ConnectionState.done:
               if(snapshot.hasData){
+
+                //recupera lista de video
+                List<Video> video = snapshot.data;
+
                   ListView.separated(itemBuilder: (BuildContext context, int index) {
                     return Column(children: <Widget>[
-                      
+                      Container(
+                        height: 210,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: 
+                          NetworkImage(video[index].imagem,),
+                          ),
+                        ),
+                        
+                      ),
+                      ListTile(
+                        title: Text(video[index].titulo),
+                        subtitle: Text(video[index].descricao),
+                      )
                     ],);
-                  }, itemCount: snapshot.data.length, 
+                  }, 
+                  itemCount: snapshot.data.length, 
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
                       height: 3,

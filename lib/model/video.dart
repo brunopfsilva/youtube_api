@@ -23,8 +23,9 @@ static converterJson (Map<String,dynamic>json){
     return Video(
       id: json["id"]["videoId"],
       titulo: json["snippet"]["title"],
+      descricao: json["snippet"]["description"],
       imagem: json["snippet"]["thumbnails"]["hight"]["url"],
-      canal: json["snippet"]["channelId"],
+      canal: json["snippet"]["channelTitle"],
     );
   }
 }
